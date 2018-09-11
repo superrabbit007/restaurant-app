@@ -1,5 +1,11 @@
-@media screen and (min-width: 1500px) {
-	body {
-		max-width: 1500px;
+#restaurants-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+@media screen and (max-width: 468px) {
+	.filter-options {
+		height: 140px;
 	}
+
 }
