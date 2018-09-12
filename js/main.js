@@ -166,6 +166,8 @@ createRestaurantHTML = (restaurant) => {
   const name = document.createElement('h1');
   name.innerHTML = restaurant.name;
   li.append(name);
+//增加alt属性
+  image.alt = restaurant.name;
 
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
