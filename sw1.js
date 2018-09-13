@@ -1,6 +1,8 @@
+var staticCacheName = 'res-1'; 
+
 self.addEventListener('install', function(event) {
 	event.waitUntil(
-		caches.open('res-1').then(function(cache) {
+		caches.open(staticCacheName).then(function(cache) {
 			return cache.addAll([
 				'/',
 				'css/',
@@ -15,7 +17,18 @@ self.addEventListener('install', function(event) {
 	);
 });
 
-
+self.addEventListener('activate', function(event) {
+	event.waitUntil(
+		caches.keys().then(function(cacheNames) {
+			cacheNames.filter(function(cacheName) {
+				return 	cacheName.startsWith('res-') && 
+						cacheName != staticCacheName;
+ 			}).map(function(cacheName) {
+ 				return cache.delete(cacheName);
+ 			})
+		})
+	);
+});
 
 
 self.addEventListener('fetch', function(event) {
